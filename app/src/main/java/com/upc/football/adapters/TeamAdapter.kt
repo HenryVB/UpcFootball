@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.OkHttp3Downloader
 import com.squareup.picasso.Picasso
@@ -17,6 +18,7 @@ class TeamAdapter(private val teams: List<Team>, private val context: Context) :
     class ViewHolder(val view: View): RecyclerView.ViewHolder(view){
         val ivLogo = view.findViewById(R.id.ivLogo) as ImageView
         val tvName = view.findViewById(R.id.tvName) as TextView
+        val cvTeam = view.findViewById(R.id.cvTeam) as CardView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamAdapter.ViewHolder {

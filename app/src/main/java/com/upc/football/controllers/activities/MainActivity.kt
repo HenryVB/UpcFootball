@@ -1,4 +1,4 @@
-package com.upc.football
+package com.upc.football.controllers.activities
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
@@ -6,8 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.upc.football.R
+import com.upc.football.network.TeamService
 import com.upc.football.adapters.TeamAdapter
-import com.upc.football.models.ApiResponseDetails
 import com.upc.football.models.ApiResponseHeader
 import com.upc.football.models.Team
 import retrofit2.Call
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
 
         //DECLARAMOS NUESTRO OBJETO TeamService
-        val teamService:TeamService
+        val teamService: TeamService
         teamService = retrofit.create(TeamService::class.java)
         val request = teamService.getTeams("api-football-v1.p.rapidapi.com","d229813befmsh4c1646ad132a0b5p1313fcjsn9afecaefc97e")
 
