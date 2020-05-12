@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-//KAPT Anotaciones Room
 apply plugin: 'kotlin-kapt'
+
 
 android {
     compileSdkVersion 29
@@ -41,27 +41,21 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    //Librerias Retrofit
+    //Librerias
     implementation 'com.squareup.retrofit2:retrofit:2.8.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
-
-    //Picasso - Carga imagenes
+    //Picasso
     implementation "com.squareup.picasso:picasso:2.71828"
-
     //RecyclerView
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
-    //CardView
-    implementation 'androidx.cardview:cardview:1.0.0'
+    //Librerias para el acceso a room
+    implementation "androidx.room:room-runtime:2.2.5"
+    kapt "androidx.room:room-compiler:2.2.5"
 
-    //Material design
-    //implementation 'com.google.android.material:material:1.1.0'
+    //UI
+    implementation "com.google.android.material:material:1.1.0"
 
-    //ROOM
-    //def room_version = "2.2.5"
-    //implementation "androidx.room:room-runtime:$room_version"
-    //kapt "androidx.room:room-compiler:$room_version"
-
-
+ 
 
 }

@@ -1,11 +1,17 @@
 package com.upc.football.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
+@Entity(
+    tableName = "teams"
+)
 data class Team (
+    @PrimaryKey(autoGenerate = true)
     @SerializedName("team_id")
-    val team_id : Int,
+    val team_id : Int =0,
     @SerializedName("name")
     val name : String,
     @SerializedName("logo")
