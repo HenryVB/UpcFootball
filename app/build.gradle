@@ -46,8 +46,10 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
     //Picasso
     implementation "com.squareup.picasso:picasso:2.71828"
+
     //RecyclerView
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
 
     //Librerias para el acceso a room
     implementation "androidx.room:room-runtime:2.2.5"
@@ -55,7 +57,6 @@ dependencies {
 
     //UI
     implementation "com.google.android.material:material:1.1.0"
-
  
 
 }

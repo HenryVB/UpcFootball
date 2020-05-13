@@ -14,10 +14,14 @@ data class Team (
     val team_id : Int =0,
     @SerializedName("name")
     val name : String,
+    @SerializedName("code")
+    val code : String,
     @SerializedName("logo")
     val logo: String,
     @SerializedName("country")
     val country: String,
+    @SerializedName("is_national")
+    val is_national: Boolean,
     @SerializedName("founded")
     val founded: Int,
     @SerializedName("venue_name")

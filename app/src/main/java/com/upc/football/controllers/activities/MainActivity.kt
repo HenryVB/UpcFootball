@@ -20,7 +20,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity() {
 
     lateinit var teamRecyclerView: RecyclerView
-    //val teams: List<Team> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
