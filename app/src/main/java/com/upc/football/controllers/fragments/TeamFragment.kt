@@ -1,76 +1,47 @@
-package com.upc.football.controllers.activities
+package com.upc.football.controllers.fragments
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
 import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.upc.football.R
-import com.upc.football.network.TeamService
 import com.upc.football.adapters.TeamAdapter
-import com.upc.football.controllers.fragments.SaveFragment
-import com.upc.football.controllers.fragments.TeamFragment
+import com.upc.football.database.TeamDB
 import com.upc.football.models.ApiResponseHeader
 import com.upc.football.models.Team
+import com.upc.football.network.TeamService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MainActivity : AppCompatActivity() {
+class TeamFragment : Fragment() {
+    var team: List<Team> = ArrayList()
+    lateinit var recyclerView: RecyclerView
 
-    private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        Log.d("a","1")
-        navigateTo(item)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_team, container, false)
+
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        recyclerView = view.findViewById(R.id.rvTeams)
+        loadTeams(view.context)
 
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val navView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
-        Log.d("a","2")
-        navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
-        Log.d("a","3")
-        Log.d("a","menuhome:"+ R.id.menu_home)
-        navigateTo(navView.menu.findItem(R.id.menu_home))
     }
 
-    private fun getFragmentFor(item: MenuItem): Fragment {
-        Log.d("a","4")
-        Log.d("a","itemId: " + item.itemId)
-        return when(item.itemId) {
-            R.id.menu_home -> TeamFragment()
-            R.id.menu_detail -> SaveFragment()
-            else -> TeamFragment()
-        }
-    }
-
-    private fun navigateTo(item: MenuItem): Boolean {
-        item.isChecked = true
-        Log.d("a","5")
-        return supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.flFragment, getFragmentFor(item))
-            .commit() > 0
-        Log.d("a","6")
-    }
-    //lateinit var teamRecyclerView: RecyclerView
-    //val teams: List<Team> = ArrayList()
-
-    //override fun onCreate(savedInstanceState: Bundle?) {
-        //super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_main)
-        //teamRecyclerView = findViewById(R.id.rvTeams)
-        //loadTeams(this)
-
-
-    /*private fun loadTeams(context: Context){
+    private fun loadTeams(context: Context){
 
         Log.d("Init load", "Init")
 
@@ -103,8 +74,8 @@ class MainActivity : AppCompatActivity() {
 
 
                     val teams: List<Team> = responseDetails.body()!!.api.teams ?: ArrayList()
-                    teamRecyclerView.layoutManager = LinearLayoutManager(context)
-                    teamRecyclerView.adapter = TeamAdapter(teams,context)
+                    recyclerView.layoutManager = LinearLayoutManager(context)
+                    recyclerView.adapter = TeamAdapter(teams,context)
                 }
 
                 else{
@@ -114,5 +85,5 @@ class MainActivity : AppCompatActivity() {
 
         })
 
-    }*/
+    }
 }
