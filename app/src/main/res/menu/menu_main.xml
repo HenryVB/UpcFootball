@@ -2,19 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/menu_home"
-        android:title="Home"
-        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="Inicio"
+        android:icon="@drawable/ic_home_black_24dp"
         />
 
-    <item android:id="@+id/menu_detail"
-        android:title="Details"
+    <item android:id="@+id/menu_favourite"
+        android:title="Favoritos"
         android:icon="@drawable/ic_favorite_black_24dp"/>
-
-    <item android:id="@+id/menu_list"
-        android:title="Search"
-        android:icon="@drawable/ic_home_black_24dp"/>
-
-
 
 
 

@@ -1,6 +1,7 @@
 package com.upc.football.controllers.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,7 @@ import com.upc.football.adapters.TeamAdapter
 import com.upc.football.database.TeamDB
 import com.upc.football.models.Team
 
-class SaveFragment : Fragment() {
+class SaveFragment : Fragment(), TeamAdapter.OnItemClickListener {
 
     var team: List<Team> = ArrayList()
     lateinit var recyclerView: RecyclerView
@@ -31,7 +32,11 @@ class SaveFragment : Fragment() {
         team = TeamDB.getInstance(view.context).getTeamDAO().getAllTeams()
         recyclerView = view.findViewById(R.id.TeamSave)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = TeamAdapter(team,view.context)
+        recyclerView.adapter = TeamAdapter(team,view.context,this)
 
+    }
+
+    override fun onItemClicked(team: Team) {
+        Log.d("Onclick Favoritos","No hacer nada");
     }
 }

@@ -2,6 +2,7 @@ package com.upc.football.controllers.activities
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -17,7 +18,6 @@ class DetailsActivity : AppCompatActivity() {
     lateinit var ivTeamDetail: ImageView
     lateinit var tvName: TextView
     lateinit var tvID: TextView
-    lateinit var tvCode: TextView
     lateinit var tvCountry: TextView
     lateinit var tvFounded: TextView
     lateinit var tvVenueName: TextView
@@ -34,7 +34,6 @@ class DetailsActivity : AppCompatActivity() {
         ivTeamDetail = findViewById(R.id.ivTeamDetail)
         tvName = findViewById(R.id.tvNameDetail)
         tvID = findViewById(R.id.tvTeamID)
-        tvCode = findViewById(R.id.tvCode)
         tvCountry = findViewById(R.id.tvCountry)
         tvFounded = findViewById(R.id.tvFounded)
         tvVenueName = findViewById(R.id.tvVenueName)
@@ -59,15 +58,16 @@ class DetailsActivity : AppCompatActivity() {
             .into(ivTeamDetail);
 
         tvName.text = teamObject?.name
-        tvID.text = teamObject?.team_id.toString()
-        tvCode.text = teamObject?.code
-        tvCountry.text = teamObject?.country
-        tvFounded.text = teamObject?.founded.toString()
+        if(teamObject?.code != null)
+            tvName.text = tvName.text as String? + "("+teamObject.code+")"
+        tvID.text = "ID: "+teamObject?.team_id.toString()
+        tvCountry.text = "País: "+teamObject?.country
+        tvFounded.text = "Fundado: "+teamObject?.founded.toString()
         tvVenueName.text = teamObject?.venue_name
-        tvVenueSurface.text = teamObject?.venue_surface
-        tvVenueAddress.text = teamObject?.venue_address
-        tvVenueCity.text = teamObject?.venue_city
-        tvVenueCapacity.text = teamObject?.venue_capacity.toString()
+        tvVenueSurface.text = "Superficie: "+teamObject?.venue_surface
+        tvVenueAddress.text = "Dirección: "+teamObject?.venue_address
+        tvVenueCity.text = "Ciudad: "+teamObject?.venue_city
+        tvVenueCapacity.text = "Capacidad: "+teamObject?.venue_capacity.toString()
 
         fabInsert.setOnClickListener {
             saveTeam(teamObject)
@@ -78,6 +78,7 @@ class DetailsActivity : AppCompatActivity() {
     private fun saveTeam(teamObject: Team?){
         //TODO Registro en base de datos
         if (teamObject != null) {
+            Log.d("Insert favorito","Insertando favorito: "+teamObject.toString());
             TeamDB.getInstance(this).getTeamDAO().insertTeam(teamObject)
         }
     }

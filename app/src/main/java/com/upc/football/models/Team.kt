@@ -9,13 +9,13 @@ import java.io.Serializable
     tableName = "teams"
 )
 data class Team (
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @SerializedName("team_id")
     val team_id : Int =0,
     @SerializedName("name")
     val name : String,
     @SerializedName("code")
-    val code : String,
+    val code : String?,
     @SerializedName("logo")
     val logo: String,
     @SerializedName("country")

@@ -45,62 +45,35 @@
         android:gravity="center_horizontal"
         >
 
-        <LinearLayout
+        <TextView
+         android:id="@+id/tvTeamID"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center_horizontal"
+         android:text="ID: 1230"
+         android:textSize="16sp"
+        />
+
+        <TextView
+         android:id="@+id/tvCountry"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center_horizontal"
+         android:text="Pais: Peru"
+         android:textSize="16sp"
+         android:layout_marginLeft="15dp"/>
+
+        <TextView
+            android:id="@+id/tvFounded"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_marginRight="10dp"
-            >
-
-                <TextView
-                android:id="@+id/tvTeamID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="ID:  1230"
-                    android:textSize="16sp"
-                    />
-
-                <TextView
-                android:id="@+id/tvCountry"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Pais:  Peru"
-                    android:textSize="16sp"
-                    android:layout_marginTop="10dp"/>
-
+            android:layout_gravity="center_horizontal"
+            android:text="Año Fundación: 1982"
+            android:textSize="16sp"
+            android:layout_marginLeft="15dp"
+            />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_marginLeft="10dp"
-            >
-            <TextView
-                android:id="@+id/tvCode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Código:  AL-LIM"
-                android:textSize="16sp"
-                />
-
-            <TextView
-                android:id="@+id/tvFounded"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Año Fundación:  1982"
-                android:textSize="16sp"
-                android:layout_marginTop="10dp"
-                />
-        </LinearLayout>
-
-    </LinearLayout>
 
     <TextView
         android:id="@+id/tvVenueName"
@@ -117,7 +90,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -126,19 +99,15 @@
         android:gravity="center_horizontal"
         app:layout_constraintTop_toBottomOf="@id/tvVenueName"
         >
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp"
-            >
+
             <TextView
                 android:id="@+id/tvVenueSurface"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Grass"
+                android:text="Superficie: Grass"
                 android:textSize="16sp"
+                android:layout_marginTop="10dp"
                 />
 
             <TextView
@@ -146,18 +115,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Lima Metropolitana"
+                android:text="Ciudad: Lima Metropolitana"
                 android:textSize="16sp"
                 android:layout_marginTop="10dp"
                 />
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp"
-            >
+
+
             <TextView
                 android:id="@+id/tvVenueAddress"
                 android:layout_width="wrap_content"
@@ -165,6 +129,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="Dirección: La victoria"
                 android:textSize="16sp"
+                android:layout_marginTop="10dp"
                 />
 
             <TextView
@@ -176,7 +141,7 @@
                 android:textSize="16sp"
                 android:layout_marginTop="10dp"
                 />
-        </LinearLayout>
+
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -186,7 +151,7 @@
             android:layout_marginBottom="32dp"
             android:layout_x="320dp"
             android:layout_y="516dp"
-            android:src="@android:drawable/ic_input_add"
+            app:srcCompat="@drawable/ic_favorite_black_24dp"
             app:fabSize="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

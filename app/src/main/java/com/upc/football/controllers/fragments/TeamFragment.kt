@@ -1,17 +1,19 @@
 package com.upc.football.controllers.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.upc.football.R
 import com.upc.football.adapters.TeamAdapter
-import com.upc.football.database.TeamDB
+import com.upc.football.controllers.activities.DetailsActivity
 import com.upc.football.models.ApiResponseHeader
 import com.upc.football.models.Team
 import com.upc.football.network.TeamService
@@ -21,7 +23,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class TeamFragment : Fragment() {
+class TeamFragment : Fragment(), TeamAdapter.OnItemClickListener {
     var team: List<Team> = ArrayList()
     lateinit var recyclerView: RecyclerView
 
@@ -56,6 +58,7 @@ class TeamFragment : Fragment() {
         teamService = retrofit.create(TeamService::class.java)
         val request = teamService.getTeams("api-football-v1.p.rapidapi.com","d229813befmsh4c1646ad132a0b5p1313fcjsn9afecaefc97e")
 
+        
         request.enqueue(object : Callback<ApiResponseHeader> {
 
             override fun onFailure(call: Call<ApiResponseHeader>, t: Throwable) {
@@ -75,7 +78,7 @@ class TeamFragment : Fragment() {
 
                     val teams: List<Team> = responseDetails.body()!!.api.teams ?: ArrayList()
                     recyclerView.layoutManager = LinearLayoutManager(context)
-                    recyclerView.adapter = TeamAdapter(teams,context)
+                    recyclerView.adapter = TeamAdapter(teams,context,this@TeamFragment)
                 }
 
                 else{
@@ -86,4 +89,13 @@ class TeamFragment : Fragment() {
         })
 
     }
+
+    override fun onItemClicked(team: Team) {
+        Log.d("Principal", "Seleccionando detalle ID: "+team.team_id)
+        val intento = Intent(context, DetailsActivity::class.java)
+        intento.putExtra("Team",team)
+        startActivity(intento)
+    }
+
+
 }

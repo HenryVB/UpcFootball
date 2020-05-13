@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso
 import com.upc.football.R
 import com.upc.football.models.Team
 
-class TeamAdapter(private val teams: List<Team>, private val context: Context) : RecyclerView.Adapter<TeamAdapter.ViewHolder>() {
+class TeamAdapter(private val teams: List<Team>, private val context: Context, private val itemClickListener: OnItemClickListener) : RecyclerView.Adapter<TeamAdapter.ViewHolder>() {
 
     class ViewHolder(val view: View): RecyclerView.ViewHolder(view){
         val ivLogo = view.findViewById(R.id.ivLogo) as ImageView
@@ -21,8 +21,12 @@ class TeamAdapter(private val teams: List<Team>, private val context: Context) :
         val cvTeam = view.findViewById(R.id.cvTeam) as CardView
     }
 
+    interface OnItemClickListener {
+        fun onItemClicked(team: Team)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamAdapter.ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.team_item,parent,false)
+        val view = LayoutInflater.from(context).inflate(R.layout.prototype_team,parent,false)
         return ViewHolder(view)
     }
 
@@ -42,6 +46,10 @@ class TeamAdapter(private val teams: List<Team>, private val context: Context) :
             .placeholder((R.drawable.ic_launcher_background))
             .error(R.drawable.ic_launcher_background)
             .into(holder.ivLogo);
+
+        holder.cvTeam.setOnClickListener {
+            itemClickListener.onItemClicked(team)
+        }
     }
 
 }
